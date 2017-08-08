@@ -8,6 +8,9 @@
 var fs = require('fs');
 var express = require('express');
 var app = express();
+var multer  = require('multer')
+var storage = multer.memoryStorage()
+var upload = multer({ storage: storage })
 
 app.use('/public', express.static(process.cwd() + '/public'));
 
@@ -17,7 +20,10 @@ app.route('/')
     })
 
 
-app.post('/f')
+app.post('/file-upload', upload.single('file'), function(req, res, next){
+  console.log(req.file.length)
+  res.send();
+})
 
 
 app.listen(process.env.PORT, function () {
