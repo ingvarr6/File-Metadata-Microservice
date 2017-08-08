@@ -20,9 +20,8 @@ app.route('/')
     })
 
 
-app.post('/file-upload', upload.single('file'), function(req, res, next){
-  console.log(req.file.length)
-  res.send();
+app.post('/', upload.single('upl'), function(req, res, next){
+  res.json({size: req.file.size});
 })
 
 
